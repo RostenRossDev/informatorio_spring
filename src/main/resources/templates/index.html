@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+
+</head>
+
+<body class="bg-secondary">
+	
+	<table>
+	  <thead>
+	    <tr>
+	      <th >Apellido</th>
+	      <th >DNI</th>
+	      <th >Email</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr th:each="us: ${usuarios}">
+	      <td th:text="${us.nombrePersona}"></td>
+	      <td th:text="${#us.apellido}"></td>
+	      <td th:text="${#us.nacimiento}"></td>
+	    </tr>
+	  </tbody>
+	</table>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>
