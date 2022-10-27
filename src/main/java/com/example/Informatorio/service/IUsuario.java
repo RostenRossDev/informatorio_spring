@@ -1,4 +1,4 @@
-package com.example.Informatorio.servicio;
+package com.example.Informatorio.service;
 
 import java.util.List;
 

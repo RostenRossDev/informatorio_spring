@@ -1,8 +1,11 @@
 package com.example.Informatorio.restcontroller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Informatorio.entity.Usuario;
-import com.example.Informatorio.servicio.IUsuario;
+import com.example.Informatorio.service.IUsuario;
 
 @RestController
 public class UsuarioController {
-
+	private Logger log = LoggerFactory.getLogger(UsuarioController.class);
 	@Autowired
 	private IUsuario usuarioService;
 	
@@ -24,7 +27,7 @@ public class UsuarioController {
 	public ResponseEntity<HashMap<String, Object>> todosLosUsuarios(){
 		HashMap<String, Object> response = new HashMap<String, Object>();
 		List<Usuario> usuarios = usuarioService.findByAll();
-		response.put("usuarios", usuarios);
+		response.put("usuarios", usuarios);		
 		return new ResponseEntity<HashMap<String, Object>>(response, HttpStatus.OK);
 	}
 	
