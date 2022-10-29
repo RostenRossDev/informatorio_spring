@@ -3,9 +3,13 @@ package com.example.Informatorio.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity(name="streets")
 public class Street implements Serializable{
@@ -16,7 +20,7 @@ public class Street implements Serializable{
 	private Long id;
 	
 	private String name;
-
+	
 	public Long getId() {
 		return id;
 	}

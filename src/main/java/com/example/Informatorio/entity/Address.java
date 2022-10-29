@@ -1,58 +1,47 @@
 package com.example.Informatorio.entity;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.UniqueConstraint;
 
-//@Entity(name="addresses")
+@Entity(name="addresses")
 public class Address {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-        name = "addresse_id_street_id", 
-        joinColumns = { @JoinColumn(name = "addresse_id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "street_id")} , 
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"addresse_id","street_id"})}
-    )
-	private Street street;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name="address_street", joinColumns = @JoinColumn(name="address_id"), 
+	inverseJoinColumns = @JoinColumn(name="street_id"))
+	private Set<Street> street;
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-        name = "addresse_id_number_id", 
-        joinColumns = { @JoinColumn(name = "addresse_id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "number_id")} , 
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"addresse_id","number_id"})}
-    )
-	private NumberStreet number;	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name="address_number", joinColumns = @JoinColumn(name="address_id"), 
+	inverseJoinColumns = @JoinColumn(name="number_id"))
+	private Set<NumberStreet> number;
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-        name = "addresse_id_department_id", 
-        joinColumns = { @JoinColumn(name = "addresse_id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "department_id")} , 
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"addresse_id","department_id"})}
-    )
-	private Departament department;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name="address_department", joinColumns = @JoinColumn(name="address_id"), 
+	inverseJoinColumns = @JoinColumn(name="department_id"))
+	private Set<Departament> department;
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-        name = "addresse_id_floor_id", 
-        joinColumns = { @JoinColumn(name = "addresse_id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "floor_id")} , 
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"addresse_id","floor_id"})}
-    )
-	private Floor floor;
-
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name="address_floor", joinColumns = @JoinColumn(name="address_id"), 
+	inverseJoinColumns = @JoinColumn(name="floor_id"))
+	private Set<Floor> floor;
+  
 	public Long getId() {
 		return id;
 	}
@@ -61,35 +50,36 @@ public class Address {
 		this.id = id;
 	}
 
-	public Street getStreet() {
+	
+	public Set<Street> getRoles() {
 		return street;
 	}
 
-	public void setStreet(Street street) {
-		this.street = street;
+	public void setRoles(Set<Street> roles) {
+		this.street = roles;
 	}
 
-	public NumberStreet getNumber() {
+	public Set<NumberStreet> getNumber() {
 		return number;
 	}
 
-	public void setNumber(NumberStreet number) {
+	public void setNumber(Set<NumberStreet> number) {
 		this.number = number;
 	}
 
-	public Departament getDepartment() {
+	public Set<Departament> getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(Departament department) {
+	public void setDepartment(Set<Departament> department) {
 		this.department = department;
 	}
 
-	public Floor getFloor() {
+	public Set<Floor> getFloor() {
 		return floor;
 	}
 
-	public void setFloor(Floor floor) {
+	public void setFloor(Set<Floor> floor) {
 		this.floor = floor;
 	}
 
@@ -98,7 +88,8 @@ public class Address {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Address(Long id, Street street, NumberStreet number, Departament department, Floor floor) {
+	public Address(Long id, Set<Street> street, Set<NumberStreet> number, Set<Departament> department,
+			Set<Floor> floor) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -106,6 +97,6 @@ public class Address {
 		this.department = department;
 		this.floor = floor;
 	}
-	
+
 	
 }
