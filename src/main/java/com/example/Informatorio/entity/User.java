@@ -3,14 +3,17 @@ package com.example.Informatorio.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-@Entity(name = "usuarios")
-public class Usuario implements Serializable{
+@Entity(name = "users")
+public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -35,14 +38,15 @@ public class Usuario implements Serializable{
 	@Column(name="email_persona")
 	private String email;
 	
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	private Address address;
 	
-	
-	public Usuario() {
+	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Usuario(String nombre, String apellido, Date nacimiento, Integer dni, String email) {
+	public User(String nombre, String apellido, Date nacimiento, Integer dni, String email) {
 		super();
 		this.nombrePersona = nombre;
 		this.apellido = apellido;

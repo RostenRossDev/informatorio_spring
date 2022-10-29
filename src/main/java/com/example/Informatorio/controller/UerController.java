@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.Informatorio.InformatorioApplication;
-import com.example.Informatorio.entity.Usuario;
-import com.example.Informatorio.service.IUsuario;
+import com.example.Informatorio.entity.User;
+import com.example.Informatorio.service.IUser;
 
 @Controller
 public class UerController {
@@ -19,13 +19,13 @@ public class UerController {
 	private static final Logger log = LoggerFactory.getLogger(UerController.class);
 
 	@Autowired
-	private IUsuario usuarioService;
+	private IUser usuarioService;
 	
 	
 	@GetMapping("/tablaUsuarios")
 	public String tablaUsuarios(Model model) {
 		log.info("Esto es un mensaje mediante el log");
-		List<Usuario> usuarios = usuarioService.findByAll();
+		List<User> usuarios = usuarioService.findByAll();
 		 model.addAttribute("usuarios", usuarios);
 		return "index";
 	}

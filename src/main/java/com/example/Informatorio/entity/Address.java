@@ -41,7 +41,10 @@ public class Address {
 	@JoinTable(name="address_floor", joinColumns = @JoinColumn(name="address_id"), 
 	inverseJoinColumns = @JoinColumn(name="floor_id"))
 	private Set<Floor> floor;
-  
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	private User user;
+	
 	public Long getId() {
 		return id;
 	}

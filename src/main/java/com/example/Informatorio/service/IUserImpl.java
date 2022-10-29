@@ -8,25 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Informatorio.controller.UerController;
-import com.example.Informatorio.entity.Usuario;
-import com.example.Informatorio.repository.IUsuarioDao;
+import com.example.Informatorio.entity.User;
+import com.example.Informatorio.repository.IUserDao;
 
 @Service
-public class IUsuarioImpl implements IUsuario{
-	private static final Logger log = LoggerFactory.getLogger(IUsuarioImpl.class);
+public class IUserImpl implements IUser{
+	private static final Logger log = LoggerFactory.getLogger(IUserImpl.class);
 
 	@Autowired
-	IUsuarioDao usuarioDao;
+	IUserDao usuarioDao;
 	
 	@Override
-	public Usuario findById(Long id) {
+	public User findById(Long id) {
 		// TODO Auto-generated method stub
 		log.info("buscando usuario por id");
-		return usuarioDao.findById(id).orElse(new Usuario());
+		return usuarioDao.findById(id).orElse(new User());
 	}
 
 	@Override
-	public List<Usuario> findByAll() {
+	public List<User> findByAll() {
 		// TODO Auto-generated method stub
 		log.info("buscando todos los usuarios");
 		log.debug("buscando todos los usuarios");

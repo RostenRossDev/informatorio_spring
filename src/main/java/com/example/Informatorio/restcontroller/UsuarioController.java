@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Informatorio.entity.Usuario;
-import com.example.Informatorio.service.IUsuario;
+import com.example.Informatorio.entity.User;
+import com.example.Informatorio.service.IUser;
 
 @RestController
 public class UsuarioController {
 	private Logger log = LoggerFactory.getLogger(UsuarioController.class);
 	@Autowired
-	private IUsuario usuarioService;
+	private IUser usuarioService;
 	
 	@GetMapping("/usuarios")
 	public ResponseEntity<HashMap<String, Object>> todosLosUsuarios(){
 		HashMap<String, Object> response = new HashMap<String, Object>();
-		List<Usuario> usuarios = usuarioService.findByAll();
+		List<User> usuarios = usuarioService.findByAll();
 		response.put("usuarios", usuarios);		
 		return new ResponseEntity<HashMap<String, Object>>(response, HttpStatus.OK);
 	}
@@ -34,7 +34,7 @@ public class UsuarioController {
 	@GetMapping("/usuario/{id}")
 	public ResponseEntity<HashMap<String, Object>> usuario(@PathVariable(value = "id") Long id){
 		HashMap<String, Object> response = new HashMap<String, Object>();
-		Usuario usuario = usuarioService.findById(id);
+		User usuario = usuarioService.findById(id);
 		response.put("usuario", usuario);
 		return new ResponseEntity<HashMap<String, Object>>(response, HttpStatus.OK);
 	}
