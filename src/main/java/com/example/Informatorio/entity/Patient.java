@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity(name="patients")
 public class Patient implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -26,6 +28,8 @@ public class Patient implements Serializable{
 	@Column(length =30)
 	private String lastname; 
 	private Integer dni;
+	
+	@JsonFormat(pattern="yyy-MM-dd HH:mm:ss")
 	private Date birthdate;
 	//private Address address;
 	

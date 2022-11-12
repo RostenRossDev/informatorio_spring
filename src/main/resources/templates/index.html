@@ -7,6 +7,7 @@
 
 <body class="bg-secondary">
 	
+	<p th:text="${long}"></p>
 	<table>
 	  <thead>
 	    <tr>
@@ -16,10 +17,10 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	    <tr th:each="us: ${usuarios}">
-	      <td th:text="${us.nombrePersona}"></td>
-	      <td th:text="${#us.apellido}"></td>
-	      <td th:text="${#us.nacimiento}"></td>
+	    <tr th:each="us:${usuarios}">
+	      <td th:text="${us.getNombre}" ></td>
+	      <td th:text="${us.getApellido}"></td>
+	      <td th:text="${us.getNacimiento}"></td>
 	    </tr>
 	  </tbody>
 	</table>
