@@ -37,7 +37,7 @@ public class IUserImpl implements IUser{
 	}
 
 	
-	@Transactional
+	/*@Transactional
 	public User save(User user) {
 		
 		usuarioDao.sustraer(200);
@@ -45,5 +45,5 @@ public class IUserImpl implements IUser{
 		usuarioDao.depositar(200);
 		
 		return user;		
-	}
+	}*/
 }
